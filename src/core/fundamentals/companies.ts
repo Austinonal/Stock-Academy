@@ -1,0 +1,47 @@
+/** Fictional companies. Units: million THB (except per-share and share counts in millions). Synthetic, for learning only. */
+export type FiscalYear = {
+  year: number;
+  revenue: number; cogs: number; opex: number; depreciation: number; interestExpense: number; taxRate: number; oneOff: number;
+  totalAssets: number; currentAssets: number; inventory: number; cash: number; currentLiabilities: number; totalDebt: number; equity: number;
+  operatingCashFlow: number; capex: number; dividendsPaid: number;
+  sharesBasic: number; sharesDiluted: number;
+};
+
+export type Company = {
+  symbol: string; name: string; sector: string; profile: string; style: string;
+  price: number; // synthetic share price (THB)
+  years: FiscalYear[]; // oldest → newest
+};
+
+export const COMPANIES: Company[] = [
+  { symbol: 'DMTECH', name: 'เดโมเทค (สมมติ)', sector: 'Technology', style: 'ธุรกิจโตเร็ว (Growth)', price: 85,
+    profile: 'ซอฟต์แวร์แบบสมัครสมาชิก รายได้โตเร็ว margin ขั้นต้นสูง แต่ลงทุนการตลาดหนัก กำไรสุทธิยังบาง ไม่จ่ายปันผล',
+    years: [
+      { year: 2021, revenue: 1200, cogs: 360, opex: 760, depreciation: 40, interestExpense: 5, taxRate: 0.2, oneOff: 0, totalAssets: 2100, currentAssets: 1300, inventory: 0, cash: 900, currentLiabilities: 500, totalDebt: 150, equity: 1350, operatingCashFlow: 140, capex: 60, dividendsPaid: 0, sharesBasic: 100, sharesDiluted: 106 },
+      { year: 2022, revenue: 1620, cogs: 470, opex: 990, depreciation: 50, interestExpense: 6, taxRate: 0.2, oneOff: 0, totalAssets: 2450, currentAssets: 1500, inventory: 0, cash: 980, currentLiabilities: 580, totalDebt: 150, equity: 1560, operatingCashFlow: 220, capex: 80, dividendsPaid: 0, sharesBasic: 101, sharesDiluted: 108 },
+      { year: 2023, revenue: 2150, cogs: 600, opex: 1260, depreciation: 65, interestExpense: 6, taxRate: 0.2, oneOff: -40, totalAssets: 2900, currentAssets: 1750, inventory: 0, cash: 1100, currentLiabilities: 680, totalDebt: 140, equity: 1850, operatingCashFlow: 330, capex: 100, dividendsPaid: 0, sharesBasic: 103, sharesDiluted: 110 },
+      { year: 2024, revenue: 2780, cogs: 750, opex: 1560, depreciation: 80, interestExpense: 5, taxRate: 0.2, oneOff: 0, totalAssets: 3450, currentAssets: 2050, inventory: 0, cash: 1300, currentLiabilities: 790, totalDebt: 130, equity: 2250, operatingCashFlow: 470, capex: 120, dividendsPaid: 0, sharesBasic: 104, sharesDiluted: 111 },
+    ] },
+  { symbol: 'DMFOOD', name: 'เดโมฟู้ด (สมมติ)', sector: 'Consumer Staples', style: 'ธุรกิจมั่นคง / ปันผล (Defensive)', price: 70,
+    profile: 'ผู้ผลิตอาหารแปรรูป รายได้โตช้าแต่สม่ำเสมอ กระแสเงินสดดี จ่ายปันผลต่อเนื่อง',
+    years: [
+      { year: 2021, revenue: 8200, cogs: 5900, opex: 1350, depreciation: 260, interestExpense: 60, taxRate: 0.2, oneOff: 0, totalAssets: 9800, currentAssets: 3600, inventory: 1500, cash: 700, currentLiabilities: 2300, totalDebt: 1900, equity: 5600, operatingCashFlow: 1050, capex: 380, dividendsPaid: 420, sharesBasic: 400, sharesDiluted: 400 },
+      { year: 2022, revenue: 8500, cogs: 6150, opex: 1380, depreciation: 270, interestExpense: 62, taxRate: 0.2, oneOff: 0, totalAssets: 10100, currentAssets: 3700, inventory: 1600, cash: 720, currentLiabilities: 2350, totalDebt: 1850, equity: 5800, operatingCashFlow: 1000, capex: 400, dividendsPaid: 440, sharesBasic: 400, sharesDiluted: 400 },
+      { year: 2023, revenue: 8900, cogs: 6380, opex: 1420, depreciation: 280, interestExpense: 58, taxRate: 0.2, oneOff: 60, totalAssets: 10400, currentAssets: 3850, inventory: 1650, cash: 780, currentLiabilities: 2400, totalDebt: 1800, equity: 6050, operatingCashFlow: 1120, capex: 410, dividendsPaid: 460, sharesBasic: 400, sharesDiluted: 400 },
+      { year: 2024, revenue: 9250, cogs: 6600, opex: 1470, depreciation: 290, interestExpense: 55, taxRate: 0.2, oneOff: 0, totalAssets: 10700, currentAssets: 3950, inventory: 1700, cash: 820, currentLiabilities: 2450, totalDebt: 1750, equity: 6300, operatingCashFlow: 1180, capex: 420, dividendsPaid: 480, sharesBasic: 400, sharesDiluted: 400 },
+    ] },
+  { symbol: 'DMSTEEL', name: 'เดโมสตีล (สมมติ)', sector: 'Materials', style: 'ธุรกิจวัฏจักร (Cyclical)', price: 22,
+    profile: 'ผู้ผลิตเหล็ก กำไรแกว่งตามราคาสินค้าโภคภัณฑ์ หนี้สูง ปีที่แย่ขาดทุนได้ — P/E ในปีขาดทุนจึงไม่มีความหมาย',
+    years: [
+      { year: 2021, revenue: 15000, cogs: 11800, opex: 900, depreciation: 700, interestExpense: 380, taxRate: 0.2, oneOff: 0, totalAssets: 21000, currentAssets: 7000, inventory: 3800, cash: 900, currentLiabilities: 5600, totalDebt: 8500, equity: 8800, operatingCashFlow: 2300, capex: 1200, dividendsPaid: 500, sharesBasic: 1000, sharesDiluted: 1000 },
+      { year: 2022, revenue: 17500, cogs: 13400, opex: 950, depreciation: 720, interestExpense: 400, taxRate: 0.2, oneOff: 0, totalAssets: 22500, currentAssets: 7800, inventory: 4300, cash: 1100, currentLiabilities: 6000, totalDebt: 8300, equity: 9900, operatingCashFlow: 2800, capex: 1300, dividendsPaid: 700, sharesBasic: 1000, sharesDiluted: 1000 },
+      { year: 2023, revenue: 12800, cogs: 11600, opex: 920, depreciation: 740, interestExpense: 430, taxRate: 0.2, oneOff: -250, totalAssets: 21500, currentAssets: 6500, inventory: 3900, cash: 700, currentLiabilities: 5900, totalDebt: 8900, equity: 9100, operatingCashFlow: 600, capex: 900, dividendsPaid: 0, sharesBasic: 1000, sharesDiluted: 1000 },
+      { year: 2024, revenue: 13600, cogs: 11500, opex: 930, depreciation: 750, interestExpense: 440, taxRate: 0.2, oneOff: 0, totalAssets: 21800, currentAssets: 6700, inventory: 3700, cash: 750, currentLiabilities: 5800, totalDebt: 8800, equity: 9250, operatingCashFlow: 1400, capex: 950, dividendsPaid: 100, sharesBasic: 1000, sharesDiluted: 1000 },
+    ] },
+  { symbol: 'DMBANK', name: 'เดโมแบงก์ (สมมติ)', sector: 'Financials', style: 'สถาบันการเงิน (ใช้เกณฑ์ต่างจากธุรกิจทั่วไป)', price: 118,
+    profile: 'ธนาคารสมมติ — โครงสร้างงบต่างจากบริษัททั่วไป หนี้สิน (เงินฝาก) คือวัตถุดิบ ไม่ควรเทียบ D/E หรือ EV/EBITDA กับบริษัทอุตสาหกรรมอื่น',
+    years: [
+      { year: 2023, revenue: 21000, cogs: 7000, opex: 6500, depreciation: 500, interestExpense: 0, taxRate: 0.2, oneOff: 0, totalAssets: 300000, currentAssets: 0, inventory: 0, cash: 15000, currentLiabilities: 0, totalDebt: 255000, equity: 42000, operatingCashFlow: 6000, capex: 400, dividendsPaid: 2900, sharesBasic: 2000, sharesDiluted: 2000 },
+      { year: 2024, revenue: 22000, cogs: 7400, opex: 6700, depreciation: 520, interestExpense: 0, taxRate: 0.2, oneOff: 0, totalAssets: 312000, currentAssets: 0, inventory: 0, cash: 15500, currentLiabilities: 0, totalDebt: 265000, equity: 44000, operatingCashFlow: 6400, capex: 420, dividendsPaid: 3100, sharesBasic: 2000, sharesDiluted: 2000 },
+    ] },
+];
