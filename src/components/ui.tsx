@@ -72,8 +72,17 @@ export function Empty({ title, children }: { title: string; children?: ReactNode
   return <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center dark:border-slate-700"><p className="font-medium">{title}</p>{children && <div className="muted mt-1">{children}</div>}</div>;
 }
 
+/** Skeleton in the shape of a typical page (header, stat row, content) instead of a bare text line. */
 export function Loading({ label = 'กำลังโหลด…' }: { label?: string }) {
-  return <p className="muted animate-pulse" role="status">{label}</p>;
+  return (
+    <div role="status" aria-busy="true">
+      <span className="sr-only">{label}</span>
+      <div className="skeleton h-8 w-64" />
+      <div className="skeleton mt-3 h-4 w-96 max-w-full" />
+      <div className="mt-6 grid gap-3 sm:grid-cols-4">{[0, 1, 2, 3].map((i) => <div key={i} className="skeleton h-20" />)}</div>
+      <div className="skeleton mt-4 h-64" />
+    </div>
+  );
 }
 
 /** Signed value colored by sign, with +/− so color is never the only cue. */

@@ -49,7 +49,7 @@ export default function LessonPage() {
             {b.p?.map((t) => <p key={t} className="leading-relaxed">{t}</p>)}
             {b.list && <ul className="list-disc space-y-1 pl-5">{b.list.map((t) => <li key={t}>{t}</li>)}</ul>}
             {b.formula && <pre className="overflow-x-auto whitespace-pre-wrap rounded-lg bg-slate-100 p-3 font-mono text-sm dark:bg-slate-900">{b.formula}</pre>}
-            {b.example && <div className="rounded-lg border-l-4 border-green-500 bg-green-50/60 p-3 dark:bg-green-950/30"><div className="mb-1 text-xs font-semibold uppercase text-green-700 dark:text-green-300">ตัวอย่างทีละขั้น</div><ol className="list-decimal space-y-1 pl-5 text-sm">{b.example.map((t) => <li key={t}>{t}</li>)}</ol></div>}
+            {b.example && <div className="rounded-lg border-l-4 border-green-500 bg-green-50/60 p-3 dark:bg-green-950/30">{!b.h && <div className="mb-1 text-xs font-semibold text-green-700 dark:text-green-300">ตัวอย่างทีละขั้น</div>}<ol className="list-decimal space-y-1 pl-5 text-sm">{b.example.map((t) => <li key={t}>{t}</li>)}</ol></div>}
             {b.table && <div className="overflow-x-auto"><table className="tbl"><thead><tr>{b.table.head.map((h) => <th key={h}>{h}</th>)}</tr></thead><tbody>{b.table.rows.map((r, k) => <tr key={k}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>)}</tbody></table></div>}
             {b.note && <Callout kind="warn">{b.note}</Callout>}
           </section>

@@ -32,7 +32,7 @@ export default function DashboardPage() {
               <p className="muted mt-1">{s.next.summary}</p>
               <Link to={`/learn/${s.next.id}`} className="btn btn-primary mt-3">เริ่มเรียน <ArrowRight size={16} /></Link>
             </div>
-          ) : <p className="muted mt-2">คุณเรียนครบทุกบทแล้ว 🎉 ลองทำ Capstone และทบทวนต่อ</p>}
+          ) : <p className="muted mt-2">คุณเรียนครบทุกบทแล้ว ลองทำ Capstone และทบทวนต่อ</p>}
           {due > 0 && <Link to="/review" className="btn mt-3 ml-2"><Repeat size={16} /> ทบทวน {due} รายการ</Link>}
         </section>
         <section className="card" aria-labelledby="data">
