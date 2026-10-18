@@ -1,68 +1,76 @@
-import { CandlestickChart, Menu, Moon, Sun, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { CandlestickChart, Moon, Sun } from 'lucide-react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { NAV } from '../../app/nav';
 import { useTheme } from '../../app/theme';
 
+const matches = (to: string, path: string) => (to === '/' ? path === '/' : path === to || path.startsWith(`${to}/`));
+const groupOf = (path: string) => NAV.find((g) => g.items.some((i) => matches(i.to, path))) ?? NAV[0];
+
 function Brand() {
   return (
-    <div className="flex items-center gap-2.5">
+    <Link to="/" className="flex shrink-0 items-center gap-2.5 rounded-lg" aria-label="StockLab TH หน้าแรก">
       <span className="grid h-9 w-9 place-items-center rounded-xl bg-green-500 text-slate-950 dark:shadow-[0_0_16px_rgba(34,197,94,.35)]" aria-hidden><CandlestickChart size={20} /></span>
-      <div className="leading-tight">
-        <div className="text-base font-bold tracking-tight">StockLab <span className="text-green-600 dark:text-green-400">TH</span></div>
-        <div className="text-[11px] text-slate-500">Stock Academy & Simulator</div>
-      </div>
-    </div>
+      <span className="leading-tight">
+        <span className="block text-base font-bold tracking-tight">StockLab <span className="text-green-600 dark:text-green-400">TH</span></span>
+        <span className="hidden text-[11px] text-slate-500 sm:block">Stock Academy & Simulator</span>
+      </span>
+    </Link>
   );
 }
 
+/** Two-tier top navigation: section tabs on top, that section's pages below. No sidebar. */
 export function Layout() {
   const { dark, toggle } = useTheme();
-  const [open, setOpen] = useState(false);
-  const loc = useLocation();
-  useEffect(() => setOpen(false), [loc.pathname]);
+  const { pathname } = useLocation();
+  const group = groupOf(pathname);
   const themeLabel = dark ? 'เปลี่ยนเป็นธีมสว่าง' : 'เปลี่ยนเป็นธีมมืด';
   const ThemeIcon = dark ? Sun : Moon;
 
   return (
-    <div className="min-h-screen lg:flex">
+    <div className="min-h-dvh">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-green-500 focus:px-3 focus:py-1.5 focus:font-semibold focus:text-slate-950">ข้ามไปเนื้อหา</a>
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/85 px-3 py-2 backdrop-blur lg:hidden dark:border-slate-800 dark:bg-slate-950/85">
-        <button className="btn !px-2.5" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="sidebar" aria-label="เปิด/ปิดเมนู">{open ? <X size={18} /> : <Menu size={18} />}</button>
-        <Brand />
-        <button className="btn !px-2.5" onClick={toggle} aria-label={themeLabel}><ThemeIcon size={18} /></button>
-      </header>
-      <aside id="sidebar" className={`${open ? 'flex' : 'hidden'} fixed inset-x-0 bottom-0 top-[53px] z-20 flex-col overflow-y-auto border-r border-slate-200 bg-white px-3 py-4 lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-68 lg:shrink-0 dark:border-slate-800 dark:bg-slate-900`}>
-        <div className="mb-6 hidden px-2 lg:block"><Brand /></div>
-        <nav aria-label="เมนูหลัก" className="flex-1">
-          {NAV.map((g) => (
-            <div key={g.group} className="mb-5">
-              <div className="px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-500">{g.group}</div>
-              <ul className="space-y-0.5">
-                {g.items.map(({ to, label, en, icon: Icon }) => (
-                  <li key={to}>
-                    <NavLink to={to} end={to === '/'} className={({ isActive }) => `group relative flex min-h-9 items-center gap-2.5 rounded-lg px-3 py-1.5 text-sm transition-colors duration-150 ${isActive
-                      ? 'bg-green-50 font-semibold text-green-800 before:absolute before:inset-y-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-green-500 dark:bg-green-500/10 dark:text-green-300'
-                      : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/60 dark:hover:text-white'}`}>
-                      <Icon size={17} aria-hidden className="shrink-0" />
-                      <span className="flex-1">{label}</span>
-                      <span className="text-[10px] text-slate-500 opacity-0 transition-opacity duration-150 group-hover:opacity-100">{en}</span>
-                    </NavLink>
+      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/85 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-2 px-4 pt-3 lg:px-8">
+          <Brand />
+          <nav aria-label="หมวดหลัก" className="order-last -mx-4 w-full overflow-x-auto px-4 md:order-none md:mx-0 md:w-auto md:flex-1 md:px-0">
+            <ul className="flex gap-1">
+              {NAV.map((g) => {
+                const active = g === group;
+                return (
+                  <li key={g.group}>
+                    <Link to={g.items[0].to} aria-current={active ? 'true' : undefined}
+                      className={`block whitespace-nowrap rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-150 ${active
+                        ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950'
+                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/70 dark:hover:text-white'}`}>
+                      {g.group}
+                    </Link>
                   </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                );
+              })}
+            </ul>
+          </nav>
+          <button className="btn ml-auto !px-2.5 md:ml-0" onClick={toggle} aria-label={themeLabel}><ThemeIcon size={18} /></button>
+        </div>
+        <nav aria-label={`หน้าในหมวด ${group.group}`} className="mx-auto max-w-7xl overflow-x-auto px-4 lg:px-8">
+          <ul className="flex gap-1 pt-2">
+            {group.items.map(({ to, label, en, icon: Icon }) => (
+              <li key={to}>
+                <NavLink to={to} end={to === '/'} title={en}
+                  className={({ isActive }) => `relative flex items-center gap-2 whitespace-nowrap px-3 pb-2.5 pt-1.5 text-sm transition-colors duration-150 after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:rounded-full ${isActive || matches(to, pathname)
+                    ? 'font-semibold text-slate-900 after:bg-green-500 dark:text-white'
+                    : 'text-slate-600 after:bg-transparent hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}>
+                  <Icon size={16} aria-hidden className="shrink-0" /> {label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </nav>
-        <button className="btn mt-2 hidden justify-center lg:flex" onClick={toggle} aria-label={themeLabel}><ThemeIcon size={16} /> {dark ? 'ธีมสว่าง' : 'ธีมมืด'}</button>
-      </aside>
-      <div className="min-w-0 flex-1">
-        <main id="main" className="mx-auto max-w-7xl px-4 py-6 lg:px-8 lg:py-8"><Outlet /></main>
-        <footer className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-5 text-xs leading-relaxed text-slate-500 lg:px-8 dark:border-slate-800">
-          <p><strong className="text-slate-700 dark:text-slate-300">เพื่อการศึกษาเท่านั้น</strong> — ไม่ใช่คำแนะนำการลงทุนเฉพาะบุคคล ไม่เชื่อมต่อโบรกเกอร์ และไม่มีการซื้อขายเงินจริง ราคา/งบการเงินในแอปเป็น <strong className="text-slate-700 dark:text-slate-300">ข้อมูลจำลอง</strong> ทั้งหมด ผลลัพธ์ในอดีตหรือจากการจำลองไม่รับประกันอนาคต</p>
-          <p className="mt-1">ข้อมูลทั้งหมดเก็บในเบราว์เซอร์ของอุปกรณ์นี้ (ไม่มี login/cloud sync) · กราฟโดย <a className="underline hover:text-slate-700 dark:hover:text-slate-300" href="https://www.tradingview.com/" target="_blank" rel="noreferrer">TradingView Lightweight Charts™</a> (Apache-2.0)</p>
-        </footer>
-      </div>
+      </header>
+      <main id="main" className="mx-auto max-w-7xl px-4 py-6 lg:px-8 lg:py-8"><Outlet /></main>
+      <footer className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-5 text-xs leading-relaxed text-slate-500 lg:px-8 dark:border-slate-800">
+        <p><strong className="text-slate-700 dark:text-slate-300">เพื่อการศึกษาเท่านั้น</strong> — ไม่ใช่คำแนะนำการลงทุนเฉพาะบุคคล ไม่เชื่อมต่อโบรกเกอร์ และไม่มีการซื้อขายเงินจริง ราคา/งบการเงินในแอปเป็น <strong className="text-slate-700 dark:text-slate-300">ข้อมูลจำลอง</strong> ทั้งหมด ผลลัพธ์ในอดีตหรือจากการจำลองไม่รับประกันอนาคต</p>
+        <p className="mt-1">ข้อมูลทั้งหมดเก็บในเบราว์เซอร์ของอุปกรณ์นี้ (ไม่มี login/cloud sync) · กราฟโดย <a className="underline hover:text-slate-700 dark:hover:text-slate-300" href="https://www.tradingview.com/" target="_blank" rel="noreferrer">TradingView Lightweight Charts™</a> (Apache-2.0)</p>
+      </footer>
     </div>
   );
 }

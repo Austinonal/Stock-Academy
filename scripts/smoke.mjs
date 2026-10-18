@@ -69,16 +69,21 @@ try {
   check((await page.locator('text=Max drawdown').count()) > 0, 'backtest metrics');
   if (shotDir) await page.screenshot({ path: `${shotDir}/backtest-run.png`, fullPage: true });
 
-  // Mobile layout: menu toggle works
+  // Mobile layout: section tabs switch the page list, no horizontal page overflow
   await page.setViewportSize({ width: 390, height: 800 });
   await go('/');
-  await page.getByRole('button', { name: 'เปิด/ปิดเมนู' }).click();
-  check(await page.getByRole('link', { name: /ห้องเรียน/ }).isVisible(), 'mobile menu opens');
+  await page.getByRole('link', { name: 'จำลอง & ความเสี่ยง' }).click();
+  await page.getByRole('link', { name: /ทดสอบย้อนหลัง/ }).click();
+  check(page.url().endsWith('#/backtest'), 'mobile two-tier navigation');
+  check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'no horizontal page scroll on mobile');
+  await page.locator('main h1').first().waitFor();
+  await page.waitForTimeout(300);
+  if (shotDir) await page.screenshot({ path: `${shotDir}/mobile.png` });
 } finally {
   await browser.close();
   stop();
 }
 
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
-console.log(`smoke OK — ${ROUTES.length} routes, chart/drawing/replay/quiz/backtest/mobile checks passed`);
+console.log(`smoke OK — ${ROUTES.length} routes, chart/drawing/replay/quiz/backtest/mobile nav checks passed`);
 process.exit(0);
