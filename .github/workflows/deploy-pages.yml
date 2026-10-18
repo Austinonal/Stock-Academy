@@ -1,9 +1,9 @@
-# Deploys dist/ to GitHub Pages on push to main.
+# Deploys dist/ to GitHub Pages on push to the repository's default branch
+# (the github-pages environment only accepts deploys from that branch).
 # One-time setup in the repo: Settings → Pages → Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -14,6 +14,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
+    if: github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     environment:
       name: github-pages
