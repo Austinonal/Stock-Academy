@@ -26,6 +26,8 @@ npm run dev          # เปิด http://localhost:5173
 - **Chart Playground**: แท่งเทียน/Bar/เส้น, 1D/1W/1M, ช่วงข้อมูล, volume, crosshair + OHLCV legend, indicator หลายตัวพร้อมปรับ parameter, เครื่องมือวาด (เส้นแนวนอน, trend line, ray, กรอบโซน, Fibonacci, เลือก/ลบ/undo/ลบทั้งหมด บันทึกต่อ symbol+timeframe), **Replay** ทีละแท่ง (play/pause/speed, บันทึกการคาดการณ์ก่อนเปิดแท่ง; indicator คำนวณจากแท่งที่เปิดแล้วเท่านั้น)
 - **Indicator Lab** 20 ตัว: SMA, EMA, WMA, VWMA, MACD, ADX/DI, RSI, Stochastic, Williams %R, ROC, CCI, Bollinger, Keltner, Donchian, ATR, OBV, A/D, CMF, MFI, Volume SMA (+ Pivot/Fibonacci ใน core) พร้อมสูตร ข้อจำกัด warm-up และเทียบพารามิเตอร์
 - **Pattern Lab**: ตัวตรวจจับ 24 รูปแบบแท่งเทียนแบบ rule-based, แบบฝึกจำแนก (รวมกรณี "ไม่มีรูปแบบ"), สแกนข้อมูลพร้อมสถิติผลลัพธ์หลังเกิดเทียบฐาน
+- **รูปแบบกราฟ (Chart Patterns)**: 13 รูปแบบ (หัวไหล่, ยอด/ก้นคู่, สามเหลี่ยม 3 แบบ, ธง, ลิ่ม, กรอบ, ถ้วยและหูจับ) แผนภาพแสดงสิ่งที่ตำราคาดคู่กับกรณีล้มเหลว + เงื่อนไขยืนยัน, measured move, จุดที่ถือว่าผิด, กับดัก
+- **เทคนิคการเทรด**: 13 เทคนิคใน 7 หมวด (ตามแนวโน้ม, ทะลุกรอบ, สวนกลับ, กรอบเวลา, บริหารความเสี่ยง, จุดออก, วินัย) เขียนเป็นกฎที่ทดสอบได้ บอกว่าได้ผล/พังเมื่อไร และลิงก์ไปทดสอบในแล็บ
 - **Fundamental Lab**: บริษัทสมมติ 4 แบบ (โตเร็ว / ปันผล / วัฏจักร / ธนาคาร) งบ 4 ปี, ratio 20+ ตัวที่แสดง N/A พร้อมเหตุผล, CAGR, แบบฝึกคำนวณ, DCF + ตาราง sensitivity, ตารางเทียบพร้อมคำเตือนข้ามอุตสาหกรรม
 - **Screener**: 40 บริษัทสมมติ กรอง AND ตาม sector/ตัวเลข 9 ช่อง ค้นหา sort บันทึก preset แสดงเหตุผลที่ผ่าน
 - **Paper Trading**: เงินจำลอง ตั้งทุน/ค่าธรรมเนียม/slippage ได้, market & limit order, fill ที่แท่งถัดไปพร้อมเหตุผล, กันขายเกิน/เงินไม่พอ, realized/unrealized P&L, equity curve, export CSV/JSON

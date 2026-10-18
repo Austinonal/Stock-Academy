@@ -1,4 +1,4 @@
-import { BarChart3, BookOpen, BookText, CandlestickChart, Database, FlaskConical, GraduationCap, LayoutDashboard, LineChart, Notebook, PieChart, Repeat, Search, Wallet, type LucideIcon } from 'lucide-react';
+import { BarChart3, Crosshair, Shapes, BookOpen, BookText, CandlestickChart, Database, FlaskConical, GraduationCap, LayoutDashboard, LineChart, Notebook, PieChart, Repeat, Search, Wallet, type LucideIcon } from 'lucide-react';
 
 export type NavItem = { to: string; label: string; en: string; icon: LucideIcon };
 export const NAV: { group: string; items: NavItem[] }[] = [
@@ -6,12 +6,14 @@ export const NAV: { group: string; items: NavItem[] }[] = [
     { to: '/', label: 'แดชบอร์ด', en: 'Dashboard', icon: LayoutDashboard },
     { to: '/learn', label: 'ห้องเรียน', en: 'Learning Path', icon: GraduationCap },
     { to: '/review', label: 'ทบทวนวันนี้', en: 'Review', icon: Repeat },
+    { to: '/techniques', label: 'เทคนิคการเทรด', en: 'Techniques', icon: Crosshair },
     { to: '/glossary', label: 'คลังศัพท์', en: 'Glossary', icon: BookText },
   ] },
   { group: 'ห้องแล็บกราฟ', items: [
     { to: '/chart', label: 'ห้องฝึกกราฟ', en: 'Chart Playground', icon: CandlestickChart },
     { to: '/indicators', label: 'Indicator Lab', en: 'Indicators', icon: LineChart },
-    { to: '/patterns', label: 'Pattern Lab', en: 'Patterns', icon: FlaskConical },
+    { to: '/chart-patterns', label: 'รูปแบบกราฟ', en: 'Chart Patterns', icon: Shapes },
+    { to: '/patterns', label: 'Pattern Lab', en: 'Candlesticks', icon: FlaskConical },
   ] },
   { group: 'วิเคราะห์ธุรกิจ', items: [
     { to: '/fundamentals', label: 'Fundamental Lab', en: 'Financials & Valuation', icon: BookOpen },

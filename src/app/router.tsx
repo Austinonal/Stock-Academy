@@ -11,6 +11,8 @@ const Review = lazy(() => import('../features/learning/ReviewPage'));
 const Glossary = lazy(() => import('../features/glossary/GlossaryPage'));
 const ChartPg = lazy(() => import('../features/chart-playground/ChartPage'));
 const Indicators = lazy(() => import('../features/indicators/IndicatorLabPage'));
+const ChartPatterns = lazy(() => import('../features/chart-patterns/ChartPatternsPage'));
+const Techniques = lazy(() => import('../features/techniques/TechniquesPage'));
 const Patterns = lazy(() => import('../features/candlestick-patterns/PatternLabPage'));
 const Fundamentals = lazy(() => import('../features/fundamental-analysis/FundamentalPage'));
 const Screener = lazy(() => import('../features/screener/ScreenerPage'));
@@ -30,7 +32,7 @@ function NotFound() {
 }
 
 const routes: [string, ReactNode][] = [
-  ['/', <Dashboard />], ['/learn', <Learn />], ['/learn/:lessonId', <Lesson />], ['/review', <Review />], ['/glossary', <Glossary />],
+  ['/', <Dashboard />], ['/learn', <Learn />], ['/learn/:lessonId', <Lesson />], ['/review', <Review />], ['/glossary', <Glossary />], ['/techniques', <Techniques />], ['/chart-patterns', <ChartPatterns />],
   ['/chart', <ChartPg />], ['/indicators', <Indicators />], ['/patterns', <Patterns />], ['/fundamentals', <Fundamentals />],
   ['/screener', <Screener />], ['/paper', <Paper />], ['/backtest', <Backtest />], ['/risk', <Risk />], ['/journal', <Journal />], ['/data', <Data />],
   ['*', <NotFound />],

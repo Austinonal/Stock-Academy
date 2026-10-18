@@ -6,7 +6,7 @@ import { chromium } from 'playwright-core';
 
 const PORT = 4179;
 const BASE = `http://localhost:${PORT}/`;
-const ROUTES = ['/', '/learn', '/learn/l0-compound', '/review', '/glossary', '/chart', '/indicators', '/patterns', '/fundamentals', '/screener', '/paper', '/backtest', '/risk', '/journal', '/data'];
+const ROUTES = ['/', '/learn', '/learn/l0-compound', '/review', '/glossary', '/techniques', '/chart-patterns', '/chart', '/indicators', '/patterns', '/fundamentals', '/screener', '/paper', '/backtest', '/risk', '/journal', '/data'];
 const shotDir = process.env.SMOKE_SHOTS; // optional: directory for screenshots
 
 // spawn vite's JS entry directly so kill() reaches the server itself (not an npx wrapper)
