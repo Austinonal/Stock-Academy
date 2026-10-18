@@ -33,7 +33,6 @@ export default function LessonPage() {
           <CheckCircle2 size={16} /> {done ? 'เรียนจบแล้ว (กดเพื่อยกเลิก)' : 'ทำเครื่องหมายว่าเรียนจบ'}
         </button>
       </PageHeader>
-      {lesson.outline && <Callout kind="warn">บทนี้เป็น <strong>โครงร่างหัวข้อ</strong> พร้อมแบบทดสอบ — เนื้อหาบทเรียนเต็มยังอยู่ระหว่างพัฒนา ใช้เป็นแผนที่การเรียนและลิงก์ไปยังห้องแล็บที่เกี่ยวข้อง</Callout>}
 
       <section className="card mt-4">
         <h2 className="h2">เป้าหมายการเรียนรู้</h2>

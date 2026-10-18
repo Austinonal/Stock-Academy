@@ -17,7 +17,6 @@ export type Lesson = {
   title: string;
   minutes: number;
   summary: string;
-  outline?: boolean; // true = structured outline, full lesson still to be written
   prerequisites: string[];
   objectives: string[];
   blocks: Block[];

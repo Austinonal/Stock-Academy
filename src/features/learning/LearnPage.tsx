@@ -31,7 +31,6 @@ export default function LearnPage() {
                       <Icon size={18} className={p?.status === 'done' ? 'text-green-600' : p ? 'text-green-500' : 'text-slate-400'} aria-label={p?.status === 'done' ? 'เรียนจบ' : p ? 'กำลังเรียน' : 'ยังไม่เริ่ม'} />
                       <span className="flex-1">
                         <span className="font-medium">{l.title}</span>
-                        {l.outline && <span className="ml-2 rounded bg-amber-100 px-1.5 text-[11px] text-amber-800 dark:bg-amber-950 dark:text-amber-300">โครงร่าง</span>}
                         <span className="block text-xs text-slate-500">{l.summary}</span>
                       </span>
                       {p?.best !== undefined && p?.best !== null && (

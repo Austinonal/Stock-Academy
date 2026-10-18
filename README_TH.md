@@ -21,7 +21,7 @@ npm run dev          # เปิด http://localhost:5173
 | `npm run smoke` | browser smoke test (ต้อง build ก่อน; ใช้ Google Chrome ในเครื่อง หรือ `CHROMIUM_PATH=...`) |
 
 ## ฟีเจอร์ที่ใช้งานได้จริง
-- **ห้องเรียน** 17 ระดับ (L0–L16): L0–L3 เป็นบทเรียนเต็ม 12 บท (ตัวอย่างทีละขั้น สูตร ข้อผิดพลาดที่พบบ่อย quiz ≥ 3 ข้อพร้อมเหตุผลทุกตัวเลือก flashcard สรุป แหล่งอ่านต่อ เครื่องคำนวณดอกเบี้ยทบต้น/real return); L4–L16 เป็นโครงร่างหัวข้อ + quiz + ลิงก์ไปห้องแล็บ
+- **ห้องเรียน** 17 ระดับ (L0–L16) บทเรียนเต็ม 25 บท ทุกบทมีภาพเปรียบเทียบ คำอธิบาย สูตร ตัวอย่างตัวเลขทีละขั้น ข้อจำกัด ข้อผิดพลาดที่พบบ่อย quiz 3 ข้อพร้อมเหตุผลทุกตัวเลือก flashcard สรุป แหล่งอ่านต่อ และลิงก์ไปห้องแล็บ (L0 มีเครื่องคำนวณดอกเบี้ยทบต้น/real return)
 - **Progress & Spaced repetition**: สถานะบทเรียน คะแนน quiz จำนวนครั้ง เกณฑ์ "พร้อมไปต่อ" 80% (ไม่ล็อก) คำถามที่ตอบผิดนัดทบทวนพรุ่งนี้ (SM-2 แบบย่อ) หน้า "ทบทวนวันนี้"
 - **Chart Playground**: แท่งเทียน/Bar/เส้น, 1D/1W/1M, ช่วงข้อมูล, volume, crosshair + OHLCV legend, indicator หลายตัวพร้อมปรับ parameter, เครื่องมือวาด (เส้นแนวนอน, trend line, ray, กรอบโซน, Fibonacci, เลือก/ลบ/undo/ลบทั้งหมด บันทึกต่อ symbol+timeframe), **Replay** ทีละแท่ง (play/pause/speed, บันทึกการคาดการณ์ก่อนเปิดแท่ง; indicator คำนวณจากแท่งที่เปิดแล้วเท่านั้น)
 - **Indicator Lab** 20 ตัว: SMA, EMA, WMA, VWMA, MACD, ADX/DI, RSI, Stochastic, Williams %R, ROC, CCI, Bollinger, Keltner, Donchian, ATR, OBV, A/D, CMF, MFI, Volume SMA (+ Pivot/Fibonacci ใน core) พร้อมสูตร ข้อจำกัด warm-up และเทียบพารามิเตอร์
@@ -42,6 +42,9 @@ npm run dev          # เปิด http://localhost:5173
 - symbol ทั้งหมด (DMTECH, DMBANK, DMSTEEL, DMFOOD และ DM*** ใน screener) เป็นบริษัทสมมติ
 - ไฟล์ตัวอย่าง: `public/sample-data/demo-candles.csv`, `public/sample-data/demo-financials.json`
 - ค่าธรรมเนียม/slippage เริ่มต้น (0.15%, 5 bps) เป็นสมมติฐาน ไม่ใช่อัตราจริงของโบรกเกอร์ใด กฎตลาด (lot/tick size, settlement, ภาษี) ต้องตรวจจาก SET/กรมสรรพากรล่าสุด
+
+## ใช้งานออฟไลน์
+หลังเปิดเว็บ (build จริง) ครั้งแรก service worker (`public/sw.js`) จะเก็บไฟล์ทั้งหมดไว้ ใช้งานต่อได้โดยไม่มีอินเทอร์เน็ต ฟอนต์ (IBM Plex Sans Thai/Mono) รวมอยู่ในแอปผ่าน @fontsource ไม่โหลดจาก Google Fonts
 
 ## ข้อมูลส่วนตัว
 ทุกอย่างเก็บใน IndexedDB ของเบราว์เซอร์นี้ (ถ้าใช้ไม่ได้จะใช้หน่วยความจำชั่วคราวและแจ้งเตือน) ไม่มี login/cloud sync/analytics ล้างข้อมูลเบราว์เซอร์แล้วข้อมูลหาย — ส่งออกไฟล์สำรองที่ Data Center

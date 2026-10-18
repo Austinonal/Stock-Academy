@@ -14,15 +14,17 @@ describe('curriculum integrity', () => {
       expect(q.why).toHaveLength(q.choices.length);
     }
   });
-  it('full lessons (L0–L3) meet the lesson template minimums', () => {
-    const full = ALL_LESSONS.filter((l) => !l.outline);
-    expect(full.length).toBeGreaterThanOrEqual(12);
-    for (const l of full) {
+  it('every lesson (L0–L16) meets the lesson template minimums', () => {
+    expect(ALL_LESSONS.length).toBeGreaterThanOrEqual(25);
+    for (const l of ALL_LESSONS) {
       expect(l.quiz.length).toBeGreaterThanOrEqual(3);
       expect(l.recap.length).toBeGreaterThanOrEqual(3);
       expect(l.objectives.length).toBeGreaterThan(0);
       expect(l.refs.length).toBeGreaterThan(0);
       expect(l.blocks.length).toBeGreaterThanOrEqual(3);
+      expect(l.blocks.some((b) => b.example?.length), `${l.id} worked example`).toBe(true);
+      expect(l.flashcards.length, l.id).toBeGreaterThan(0);
+      expect(l.mistakes.length, l.id).toBeGreaterThan(0);
     }
   });
   it('prerequisites point at existing lessons', () => {
