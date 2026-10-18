@@ -28,7 +28,7 @@ export default function LearnPage() {
                 return (
                   <li key={l.id}>
                     <Link to={`/learn/${l.id}`} className="flex items-center gap-3 rounded px-1 py-2 hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                      <Icon size={18} className={p?.status === 'done' ? 'text-green-600' : p ? 'text-cyan-500' : 'text-slate-400'} aria-label={p?.status === 'done' ? 'เรียนจบ' : p ? 'กำลังเรียน' : 'ยังไม่เริ่ม'} />
+                      <Icon size={18} className={p?.status === 'done' ? 'text-green-600' : p ? 'text-green-500' : 'text-slate-400'} aria-label={p?.status === 'done' ? 'เรียนจบ' : p ? 'กำลังเรียน' : 'ยังไม่เริ่ม'} />
                       <span className="flex-1">
                         <span className="font-medium">{l.title}</span>
                         {l.outline && <span className="ml-2 rounded bg-amber-100 px-1.5 text-[11px] text-amber-800 dark:bg-amber-950 dark:text-amber-300">โครงร่าง</span>}

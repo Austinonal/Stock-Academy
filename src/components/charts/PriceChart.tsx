@@ -43,8 +43,8 @@ export function PriceChart({ candles, chartType = 'candlestick', showVolume = tr
     if (!el.current || candles.length === 0) return;
     const chart = createChart(el.current, {
       autoSize: true,
-      layout: { background: { type: ColorType.Solid, color: dark ? '#0f172a' : '#ffffff' }, textColor: dark ? '#cbd5e1' : '#334155', attributionLogo: true, panes: { separatorColor: dark ? '#334155' : '#e2e8f0' } },
-      grid: { vertLines: { color: dark ? '#1e293b' : '#f1f5f9' }, horzLines: { color: dark ? '#1e293b' : '#f1f5f9' } },
+      layout: { background: { type: ColorType.Solid, color: dark ? '#0e1223' : '#ffffff' }, textColor: dark ? '#cbd5e1' : '#334155', attributionLogo: true, panes: { separatorColor: dark ? '#334155' : '#e2e8f0' } },
+      grid: { vertLines: { color: dark ? '#161b2e' : '#f1f5f9' }, horzLines: { color: dark ? '#161b2e' : '#f1f5f9' } },
       timeScale: { borderColor: dark ? '#334155' : '#cbd5e1' },
       rightPriceScale: { borderColor: dark ? '#334155' : '#cbd5e1' },
     });
@@ -104,7 +104,7 @@ export function PriceChart({ candles, chartType = 'candlestick', showVolume = tr
     <div className="relative" style={{ height: height + panes.length * 120 }}>
       <div ref={el} className="absolute inset-0" role="img" aria-label={`${ariaLabel} ${candles.length} แท่ง`} />
       {shown && (
-        <div className="pointer-events-none absolute left-2 top-1 z-10 flex flex-wrap gap-x-3 rounded bg-white/80 px-1.5 text-xs tabular-nums dark:bg-slate-900/80" aria-live="polite">
+        <div className="pointer-events-none absolute left-2 top-1 z-10 flex flex-wrap gap-x-3 rounded bg-white/85 px-1.5 py-0.5 text-xs tabular-nums dark:bg-slate-900/85" aria-live="polite">
           <span className="font-medium">{shown.time}</span>
           {chartType === 'line' ? <span>{fmt(shown.close)}</span> : <>
             <span>O {fmt(shown.open)}</span><span>H {fmt(shown.high)}</span><span>L {fmt(shown.low)}</span>

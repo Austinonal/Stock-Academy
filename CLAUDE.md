@@ -9,6 +9,7 @@
 - `src/features/<page>/` = หน้าจอ; `src/components/` = UI ร่วม (`PriceChart`, `ui.tsx`)
 - `src/content/` = หลักสูตร (data-driven) และคลังศัพท์
 - ข้อมูลผู้ใช้เก็บผ่าน `usePersistent(key, default, validator)` (Dexie/IndexedDB, key-value) — คีย์ใหม่ต้องเพิ่มใน `KEY_RE` ของ `storage/db.ts` เพื่อให้ backup/restore รองรับ
+- ดีไซน์: `design-system/stocklab-th/MASTER.md` (สร้างด้วย ui-ux-pro-max: Dark OLED, slate + green CTA, Inter + Noto Sans Thai) — สีหลักใช้ class `green-*`, ปุ่มหลักต้องใช้ตัวอักษรเข้มบนเขียว (contrast ≥ 4.5:1)
 - Router เป็น HashRouter + `base: './'` เพื่อให้ GitHub Pages ใช้ได้ทุกชื่อ repo
 
 ## กฎที่ห้ามละเมิด

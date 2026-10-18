@@ -31,7 +31,7 @@ export default function GlossaryPage() {
               <dd className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t.detail}</dd>
               {t.related.length > 0 && <dd className="mt-2 text-xs">ที่เกี่ยวข้อง: {t.related.map((r) => {
                 const rt = TERMS.find((x) => x.en === r);
-                return rt ? <a key={r} href={`#/glossary`} onClick={(e) => { e.preventDefault(); setCat('all'); setQ(rt.en); }} className="mr-2 text-cyan-700 underline dark:text-cyan-400">{rt.th}</a> : <span key={r} className="mr-2">{r}</span>;
+                return rt ? <a key={r} href={`#/glossary`} onClick={(e) => { e.preventDefault(); setCat('all'); setQ(rt.en); }} className="mr-2 text-green-700 underline dark:text-green-400">{rt.th}</a> : <span key={r} className="mr-2">{r}</span>;
               })}</dd>}
             </div>
           ))}

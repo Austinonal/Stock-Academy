@@ -51,7 +51,7 @@ export default function DashboardPage() {
             <li key={l.id} className="text-sm">
               <div className="flex justify-between"><span>L{l.level} · {l.title}</span><span className="tabular-nums text-slate-500">{l.done}/{l.total}</span></div>
               <div className="mt-1 h-1.5 rounded bg-slate-200 dark:bg-slate-800" role="progressbar" aria-valuemin={0} aria-valuemax={l.total} aria-valuenow={l.done} aria-label={`Level ${l.level}`}>
-                <div className="h-1.5 rounded bg-cyan-500" style={{ width: `${(l.done / l.total) * 100}%` }} />
+                <div className="h-1.5 rounded bg-green-500" style={{ width: `${(l.done / l.total) * 100}%` }} />
               </div>
             </li>
           ))}

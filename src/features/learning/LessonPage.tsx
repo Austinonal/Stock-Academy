@@ -49,7 +49,7 @@ export default function LessonPage() {
             {b.p?.map((t) => <p key={t} className="leading-relaxed">{t}</p>)}
             {b.list && <ul className="list-disc space-y-1 pl-5">{b.list.map((t) => <li key={t}>{t}</li>)}</ul>}
             {b.formula && <pre className="overflow-x-auto whitespace-pre-wrap rounded-lg bg-slate-100 p-3 font-mono text-sm dark:bg-slate-900">{b.formula}</pre>}
-            {b.example && <div className="rounded-lg border-l-4 border-cyan-500 bg-cyan-50/60 p-3 dark:bg-cyan-950/30"><div className="mb-1 text-xs font-semibold uppercase text-cyan-700 dark:text-cyan-300">ตัวอย่างทีละขั้น</div><ol className="list-decimal space-y-1 pl-5 text-sm">{b.example.map((t) => <li key={t}>{t}</li>)}</ol></div>}
+            {b.example && <div className="rounded-lg border-l-4 border-green-500 bg-green-50/60 p-3 dark:bg-green-950/30"><div className="mb-1 text-xs font-semibold uppercase text-green-700 dark:text-green-300">ตัวอย่างทีละขั้น</div><ol className="list-decimal space-y-1 pl-5 text-sm">{b.example.map((t) => <li key={t}>{t}</li>)}</ol></div>}
             {b.table && <div className="overflow-x-auto"><table className="tbl"><thead><tr>{b.table.head.map((h) => <th key={h}>{h}</th>)}</tr></thead><tbody>{b.table.rows.map((r, k) => <tr key={k}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>)}</tbody></table></div>}
             {b.note && <Callout kind="warn">{b.note}</Callout>}
           </section>
@@ -78,7 +78,7 @@ export default function LessonPage() {
       {lesson.flashcards.length > 0 && (
         <section className="mt-6"><h2 className="h2">Active recall — ลองนึกคำตอบก่อนพลิก</h2>
           <div className="mt-2 grid gap-2 sm:grid-cols-2">{lesson.flashcards.map((f) => (
-            <button key={f.id} className="card text-left hover:border-cyan-500" onClick={() => setFlipped((s) => ({ ...s, [f.id]: !s[f.id] }))} aria-expanded={!!flipped[f.id]}>
+            <button key={f.id} className="card text-left hover:border-green-500" onClick={() => setFlipped((s) => ({ ...s, [f.id]: !s[f.id] }))} aria-expanded={!!flipped[f.id]}>
               <div className="text-sm font-medium">{f.q}</div>
               <div className="mt-2 text-sm text-slate-600 dark:text-slate-400">{flipped[f.id] ? f.a : 'แตะเพื่อดูคำตอบ'}</div>
             </button>))}</div>
@@ -86,7 +86,7 @@ export default function LessonPage() {
       )}
 
       <section className="mt-6"><h2 className="h2">สรุปทบทวน</h2><ul className="mt-2 list-disc pl-5">{lesson.recap.map((r) => <li key={r}>{r}</li>)}</ul></section>
-      <section className="mt-4"><h2 className="h2">อ่านต่อ</h2><ul className="mt-2 space-y-1">{lesson.refs.map((r) => <li key={r.url}><a href={r.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-cyan-700 underline dark:text-cyan-400">{r.label} <ExternalLink size={12} /></a></li>)}</ul></section>
+      <section className="mt-4"><h2 className="h2">อ่านต่อ</h2><ul className="mt-2 space-y-1">{lesson.refs.map((r) => <li key={r.url}><a href={r.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-green-700 underline dark:text-green-400">{r.label} <ExternalLink size={12} /></a></li>)}</ul></section>
 
       <nav className="mt-8 flex justify-between gap-2" aria-label="บทเรียนก่อนหน้า/ถัดไป">
         {prev ? <Link className="btn" to={`/learn/${prev.id}`}><ArrowLeft size={16} /> {prev.title}</Link> : <span />}

@@ -12,10 +12,10 @@ export function DemoBadge({ text = 'ข้อมูลจำลอง (Synthetic
 
 export function PageHeader({ title, subtitle, demo, children }: { title: string; subtitle?: string; demo?: boolean; children?: ReactNode }) {
   return (
-    <header className="mb-4 flex flex-wrap items-start justify-between gap-3">
+    <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
         <div className="flex flex-wrap items-center gap-2"><h1 className="h1">{title}</h1>{demo && <DemoBadge />}</div>
-        {subtitle && <p className="muted mt-1 max-w-3xl">{subtitle}</p>}
+        {subtitle && <p className="muted mt-1.5 max-w-3xl leading-relaxed">{subtitle}</p>}
       </div>
       {children && <div className="flex flex-wrap gap-2">{children}</div>}
     </header>
@@ -26,8 +26,8 @@ export function Callout({ kind = 'info', children }: { kind?: 'info' | 'warn'; c
   const Icon = kind === 'warn' ? AlertTriangle : Info;
   const cls = kind === 'warn'
     ? 'border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-700/60 dark:bg-amber-950/50 dark:text-amber-200'
-    : 'border-cyan-300 bg-cyan-50 text-cyan-900 dark:border-cyan-800 dark:bg-cyan-950/40 dark:text-cyan-100';
-  return <div role={kind === 'warn' ? 'alert' : 'note'} className={`flex gap-2 rounded-lg border p-3 text-sm ${cls}`}><Icon size={16} className="mt-0.5 shrink-0" aria-hidden /><div>{children}</div></div>;
+    : 'border-sky-200 bg-sky-50 text-sky-950 dark:border-sky-900/70 dark:bg-sky-950/30 dark:text-sky-100';
+  return <div role={kind === 'warn' ? 'alert' : 'note'} className={`flex gap-2.5 rounded-xl border p-3.5 text-sm leading-relaxed ${cls}`}><Icon size={16} className="mt-0.5 shrink-0" aria-hidden /><div>{children}</div></div>;
 }
 
 export function Field({ label, error, hint, children }: { label: string; error?: string | null; hint?: string; children: (id: string) => ReactNode }) {
@@ -55,9 +55,9 @@ export function NumberField({ label, value, onChange, step = 'any', min, max, hi
 
 export function Stat({ label, value, tone, hint }: { label: string; value: ReactNode; tone?: 'up' | 'down'; hint?: string }) {
   return (
-    <div className="rounded-lg border border-slate-200 p-3 dark:border-slate-800" title={hint}>
-      <div className="text-xs text-slate-500 dark:text-slate-400">{label}</div>
-      <div className={`mt-0.5 text-lg font-semibold tabular-nums ${tone === 'up' ? 'text-green-600 dark:text-green-400' : tone === 'down' ? 'text-red-600 dark:text-red-400' : ''}`}>{value}</div>
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900" title={hint}>
+      <div className="text-xs font-medium text-slate-500">{label}</div>
+      <div className={`mt-1 text-xl font-bold tracking-tight tabular-nums ${tone === 'up' ? 'text-green-600 dark:text-green-400' : tone === 'down' ? 'text-red-600 dark:text-red-400' : ''}`}>{value}</div>
     </div>
   );
 }
@@ -69,7 +69,7 @@ export function MetricValue({ m, format }: { m: Metric; format: (n: number) => s
 }
 
 export function Empty({ title, children }: { title: string; children?: ReactNode }) {
-  return <div className="rounded-xl border border-dashed border-slate-300 p-8 text-center dark:border-slate-700"><p className="font-medium">{title}</p>{children && <div className="muted mt-1">{children}</div>}</div>;
+  return <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center dark:border-slate-700"><p className="font-medium">{title}</p>{children && <div className="muted mt-1">{children}</div>}</div>;
 }
 
 export function Loading({ label = 'กำลังโหลด…' }: { label?: string }) {

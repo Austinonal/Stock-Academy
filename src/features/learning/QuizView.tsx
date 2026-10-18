@@ -27,7 +27,7 @@ export function QuizView({ quiz, onSubmit }: { quiz: Quiz[]; onSubmit: (correct:
                   const showRight = result && j === q.answer;
                   const showWrong = result && chosen && j !== q.answer;
                   return (
-                    <label key={j} className={`flex cursor-pointer gap-2 rounded-lg border px-3 py-2 text-sm ${showRight ? 'border-green-500 bg-green-50 dark:bg-green-950/40' : showWrong ? 'border-red-500 bg-red-50 dark:bg-red-950/40' : chosen ? 'border-cyan-500' : 'border-slate-200 dark:border-slate-700'}`}>
+                    <label key={j} className={`flex cursor-pointer gap-2 rounded-lg border px-3 py-2 text-sm ${showRight ? 'border-green-500 bg-green-50 dark:bg-green-950/40' : showWrong ? 'border-red-500 bg-red-50 dark:bg-red-950/40' : chosen ? 'border-green-500' : 'border-slate-200 dark:border-slate-700'}`}>
                       <input type="radio" name={q.id} checked={chosen} disabled={!!result} onChange={() => setAnswers((a) => a.map((x, k) => (k === i ? j : x)))} />
                       <span className="flex-1">{c}{result && (chosen || j === q.answer) && <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">{showRight ? '✓ ' : '✗ '}{q.why[j]}</span>}</span>
                     </label>
