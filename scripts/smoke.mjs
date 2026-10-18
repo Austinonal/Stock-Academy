@@ -69,6 +69,16 @@ try {
   check((await page.locator('text=Max drawdown').count()) > 0, 'backtest metrics');
   if (shotDir) await page.screenshot({ path: `${shotDir}/backtest-run.png`, fullPage: true });
 
+  // Offline: once the service worker is active, the app reloads and opens a not-yet-visited page with no network
+  await go('/');
+  await page.evaluate(() => Promise.race([navigator.serviceWorker.ready, new Promise((_, reject) => setTimeout(() => reject(new Error('service worker never became active')), 10000))]));
+  await page.context().setOffline(true);
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.locator('main h1').first().waitFor({ timeout: 10000 });
+  await go('/techniques');
+  check((await page.locator('main h1').first().textContent({ timeout: 10000 }))?.includes('เทคนิค'), 'offline navigation to a lazy page');
+  await page.context().setOffline(false);
+
   // Mobile layout: section tabs switch the page list, no horizontal page overflow
   await page.setViewportSize({ width: 390, height: 800 });
   await go('/');
@@ -92,5 +102,5 @@ try {
 }
 
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
-console.log(`smoke OK — ${ROUTES.length} routes, chart/drawing/replay/quiz/backtest/mobile nav checks passed`);
+console.log(`smoke OK — ${ROUTES.length} routes, chart/drawing/replay/quiz/backtest/offline/mobile nav checks passed`);
 process.exit(0);

@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
+  // public/sw.js reads this list to precache every chunk for offline use
+  build: { manifest: 'asset-manifest.json' },
   test: {
     environment: 'jsdom',
     globals: true,
