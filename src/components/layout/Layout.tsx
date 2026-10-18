@@ -1,4 +1,5 @@
 import { CandlestickChart, Moon, Sun } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { NAV } from '../../app/nav';
 import { useTheme } from '../../app/theme';
@@ -25,11 +26,17 @@ export function Layout() {
   const group = groupOf(pathname);
   const themeLabel = dark ? 'เปลี่ยนเป็นธีมสว่าง' : 'เปลี่ยนเป็นธีมมืด';
   const ThemeIcon = dark ? Sun : Moon;
+  const header = useRef<HTMLElement>(null);
+
+  // On narrow screens the tab rows scroll sideways: bring the active section and page tab into view
+  useEffect(() => {
+    header.current?.querySelectorAll('[aria-current]').forEach((el) => el.scrollIntoView({ block: 'nearest', inline: 'center' }));
+  }, [pathname]);
 
   return (
     <div className="min-h-dvh">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-green-500 focus:px-3 focus:py-1.5 focus:font-semibold focus:text-slate-950">ข้ามไปเนื้อหา</a>
-      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/85 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
+      <header ref={header} className="sticky top-0 z-30 border-b border-slate-200 bg-white/85 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-2 px-4 pt-3 lg:px-8">
           <Brand />
           <nav aria-label="หมวดหลัก" className="order-last -mx-4 w-full overflow-x-auto px-4 md:order-none md:mx-0 md:w-auto md:flex-1 md:px-0">

@@ -76,6 +76,13 @@ try {
   await page.getByRole('link', { name: /ทดสอบย้อนหลัง/ }).click();
   check(page.url().endsWith('#/backtest'), 'mobile two-tier navigation');
   check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'no horizontal page scroll on mobile');
+  // the last section and its page must be scrolled fully into view in their tab rows
+  await go('/data');
+  await page.locator('main h1').first().waitFor();
+  await page.waitForTimeout(200);
+  const inView = (name) => page.getByRole('link', { name }).first().evaluate((el) => { const r = el.getBoundingClientRect(); return r.left >= 0 && r.right <= window.innerWidth; });
+  check(await inView('ระบบ'), 'active section tab scrolled into view on mobile');
+  check(await inView(/ตั้งค่า & ข้อมูล/), 'active page tab scrolled into view on mobile');
   await page.locator('main h1').first().waitFor();
   await page.waitForTimeout(300);
   if (shotDir) await page.screenshot({ path: `${shotDir}/mobile.png` });
